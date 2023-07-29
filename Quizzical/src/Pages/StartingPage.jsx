@@ -1,11 +1,12 @@
 import React from "react";
 
-const StartingPage=()=>{
+const StartingPage = () => {
 
-    return(
-        <div className="startingPage">
-            <h1>Quizzical</h1>
-            <h2>Challenge yourself to better yourself</h2>
+    return (
+        <div className="starting-page">
+            <h1 className="quiz-title">Quizzical</h1>
+            <h2 className="quiz-subtitle ">Quiz game from a random game API</h2>
+            <button className="star-game-button">Start Game</button>
 
         </div>
     )

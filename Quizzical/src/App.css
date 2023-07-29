@@ -1,25 +1,82 @@
 :root{
      font-family: 'inter', sans-serif;
+       --mainbackgroud:#F5F7FB;
+        --darkblue:#293264;
+    --buttonbackground:#4D5B9E;
+    --victoryBackground:"#94D7A2";
 }
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .App{
     display: flex;
+    margin: 0;
+    padding: 0;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
-.StartingPage{
+.starting-page{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
     
 }
-h1, h2{
-    text-align: center;
+.quiz-title{
+font-family: 'karla', sans-serif;
+color: var(--darkblue);
+font-weight: 700;
+line-height: 10.53px;
+
+}
+.quiz-subtitle{
+    font-family: 'karla', sans-serif;
+    color: var(--darkblue);
     font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 10px;
-    
+    line-height: 19px;
+    margin-bottom: 30px;
+}
+
+.star-game-button{
+    width: 200px;
+    height: 50px;
+    color: #F5F7FB;
+    background-color: #4D5B9E;
+    border-width: thin;
+    border-radius: 7px;
+    background-color: #4D5B9E;
+}
+
+.blue-back{
+z-index: 1;
+overflow: hidden;
+width: 400px;
+height: 400px;
+position: fixed;
+left: -5%;
+bottom: -2%;
+background: #DEEBF8;
+border-radius:40%;
+transform: rotate(-128.49deg);
+}
+
+.yellow-back{
+z-index: 1;
+overflow: hidden;
+position: fixed;
+background-color:#FFFAD1;
+right: -6%;
+top: 0%;
+border-radius:40%;
+width: 400px;
+height: 400px;
+transform: rotate(-128.49deg);
 }
