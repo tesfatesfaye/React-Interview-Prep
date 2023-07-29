@@ -16,7 +16,7 @@ const App = () => {
     </Routes>
 
 
-      <div className='blue-back{'></div>
+      <div className='blue-back'></div>
       <div className='yellow-back'></div>
 
     </div>
