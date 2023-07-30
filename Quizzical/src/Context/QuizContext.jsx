@@ -28,6 +28,7 @@ const QuizContextProvider = ({ children }) => {
                 quizInfo[quizInfoLength].answers.splice(placer, 0, answerSetter(i.correct_answer,true))
             }
             setQuizData(quizInfo)
+            console.log(quizInfo)    
         }
         fetcher()
     }, [startGame])
@@ -40,7 +41,7 @@ const QuizContextProvider = ({ children }) => {
 
 
     return (
-        <QuizContext.Provider value={{ nav }}>
+        <QuizContext.Provider value={{ nav, quizData }}>
             {children}
         </QuizContext.Provider>
     )
