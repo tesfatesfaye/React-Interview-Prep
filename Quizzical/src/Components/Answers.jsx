@@ -1,11 +1,14 @@
+import { decode } from 'html-entities';
+const Answers = (props) => {
 
-const Answers=(prop)=>{
+
+    return (
+        <div className="answer-div">
+            {decode(props.val)}
+
+        </div>
 
 
-    return(
-        <>
-        
-        </>
     )
 
 

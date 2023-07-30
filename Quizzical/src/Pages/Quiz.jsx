@@ -16,6 +16,7 @@ const {quizData}=useContext(QuizContext)
 
     return(
         <div className="quiz-parent">
+            
         {questionMapper}
             
         </div>
