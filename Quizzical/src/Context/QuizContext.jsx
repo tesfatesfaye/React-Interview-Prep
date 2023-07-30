@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const QuizContext = createContext()
 
@@ -8,7 +8,8 @@ const QuizContextProvider = ({ children }) => {
     const navigate = useNavigate() // function used switch starting page to quiz page
     const [startGame, setStartGame] = useState(() => false) // state used to initiate game
     const [quizData, setQuizData] = useState(() => []) // quiz data state
-    const [gameCompleted,setGameCompleted]=useState(()=>false)
+    const [gameCompleted, setGameCompleted] = useState(() => false)
+    const location = useLocation();
     useEffect(() => {
         let info = []
         const answerSetter = (val, correct) => {
@@ -21,18 +22,22 @@ const QuizContextProvider = ({ children }) => {
             info = await data.results
             for (let i of info) {
                 quizInfo.push({ id: nanoid(), question: i.question, answers: [] })
-                let quizInfoLength = quizInfo.length-1
-                for (let j of i.incorrect_answers){
-                    quizInfo[quizInfoLength].answers.push(answerSetter(j,false))
+                let quizInfoLength = quizInfo.length - 1
+                for (let j of i.incorrect_answers) {
+                    quizInfo[quizInfoLength].answers.push(answerSetter(j, false))
                 }
                 let placer = Math.random() * i.incorrect_answers.length
-                quizInfo[quizInfoLength].answers.splice(placer, 0, answerSetter(i.correct_answer,true))
+                quizInfo[quizInfoLength].answers.splice(placer, 0, answerSetter(i.correct_answer, true))
             }
             setQuizData(quizInfo)
-               
+
         }
         fetcher()
     }, [startGame])
+  
+    const currentPage=location.pathname
+ 
+
 
     const nav = (page) => {
         navigate(page)
@@ -42,7 +47,7 @@ const QuizContextProvider = ({ children }) => {
 
 
     return (
-        <QuizContext.Provider value={{ nav, quizData }}>
+        <QuizContext.Provider value={{ nav, quizData, currentPage }}>
             {children}
         </QuizContext.Provider>
     )
