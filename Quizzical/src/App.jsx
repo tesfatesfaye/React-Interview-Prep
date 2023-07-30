@@ -12,11 +12,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<StartingPage />} />
         <Route path='/quiz' element={<Quiz />} />
-
-
       </Routes>
-
-
       <div className='blue-back'></div>
       <div className='yellow-back'></div>
 

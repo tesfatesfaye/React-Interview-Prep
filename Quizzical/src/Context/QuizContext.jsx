@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import React, { createContext, useLayoutEffect, useState } from "react";
+import React, { createContext, useEffect, useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const QuizContext = createContext()
@@ -37,10 +37,7 @@ const QuizContextProvider = ({ children }) => {
         }
         fetcher()
     }, [startGame])
-
     const currentPage = location.pathname
-
-
     const selectAnswerChoice = (id, parentId) => {
         let alreadySelected = false // becomes true if one of the answer choices was already selected
         const quizDataClone = structuredClone(quizData)
@@ -48,29 +45,24 @@ const QuizContextProvider = ({ children }) => {
         const newAnswers = question.answers.map(item => {
             if (item.id === id) {
                 if (item.selected) {
-                    alreadySelected=true
+                    alreadySelected = true
                 }
                 return { ...item, selected: true }
             }
             else {
                 return { ...item, selected: false }
             }
-            })
+        })
         question.answers = newAnswers
         setQuizData(quizDataClone)
         setAnsweredQuestions(prev => prev.add(parentId))
         if (!alreadySelected) {
             setSubmitError(false)
         }
-
-
     }
-
-
     const nav = (page) => {
         navigate(page)
     }
-
     const tally = () => {
         let total = 0
         for (let i of quizData) {
