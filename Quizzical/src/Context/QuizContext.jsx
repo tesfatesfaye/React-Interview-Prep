@@ -34,10 +34,17 @@ const QuizContextProvider = ({ children }) => {
         }
         fetcher()
     }, [startGame])
-  
-    const currentPage=location.pathname
- 
 
+    const currentPage = location.pathname
+
+    const answerSelector = (id, parentId) => {
+        const quizDataClone = structuredClone(quizData)
+        const question = quizDataClone.find(item => item.id === parentId)
+        let answer = question.find(item => item.id === id)
+        return [question,answer]
+
+    }
+    
 
     const nav = (page) => {
         navigate(page)
