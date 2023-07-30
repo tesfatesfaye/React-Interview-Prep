@@ -1,10 +1,10 @@
 import { decode } from 'html-entities';
 import { useContext, useEffect } from 'react';
 import { QuizContext } from '../Context/QuizContext';
-import useQuestion from '../Hooks/useQuestion';
+import useAnswers from '../Hooks/useAnswers';
 const Answers = (props) => {
     const { selectAnswerChoice } = useContext(QuizContext)
-    const { style } = useQuestion(props.selected, props.correct)
+    const { style } = useAnswers(props.selected, props.correct)
 
     return (
         <div onClick={() => {

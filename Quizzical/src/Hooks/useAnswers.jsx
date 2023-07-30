@@ -1,6 +1,6 @@
 import { useContext} from "react";
 import { QuizContext } from "../Context/QuizContext";
-const useQuestion = (selected,correct) => {
+const useAnswers = (selected,correct) => {
     const { gameCompleted } = useContext(QuizContext)
     const style = () => {
             if (!gameCompleted &&selected) {
@@ -20,7 +20,7 @@ const useQuestion = (selected,correct) => {
     
     return { style }
 }
-export default useQuestion
+export default useAnswers
 
 
 

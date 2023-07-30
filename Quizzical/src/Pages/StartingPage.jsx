@@ -7,7 +7,7 @@ const StartingPage = () => {
         <div className="starting-page">
             <h1 className="quiz-title">Quizzical</h1>
             <h2 className="quiz-subtitle ">Quiz game from a random game API</h2>
-            <Button val="Start Quiz" fun={nav}/>
+            <Button val="Start Quiz" fun={nav} class="button"/>
 
         </div>
     )
