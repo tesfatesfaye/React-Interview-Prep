@@ -11,6 +11,7 @@ const QuizContextProvider = ({ children }) => {
     const [gameCompleted, setGameCompleted] = useState(() => false)
     const [answeredQuestions, setAnsweredQuestions] = useState(new Set([]))
     const [tallyTotal, setTallyTotal] = useState(0)
+    const [submitError, setSubmitError] = useState(false)
     const location = useLocation();
     useLayoutEffect(() => {
         let info = []
@@ -41,15 +42,31 @@ const QuizContextProvider = ({ children }) => {
 
 
     const selectAnswerChoice = (id, parentId) => {
+        let alreadySelected = false // becomes true if one of the answer choices was already selected
         const quizDataClone = structuredClone(quizData)
         const question = quizDataClone.find(item => item.id === parentId)
-        const newAnswers = question.answers.map(item => item.id === id ? { ...item, selected: true } : { ...item, selected: false })
+        const newAnswers = question.answers.map(item => {
+            if (item.id === id) {
+                if (item.selected) {
+                    alreadySelected=true
+                }
+                return { ...item, selected: true }
+            }
+            else {
+                return { ...item, selected: false }
+            }
+            })
         question.answers = newAnswers
         setQuizData(quizDataClone)
         setAnsweredQuestions(prev => prev.add(parentId))
+        if (!alreadySelected) {
+            setSubmitError(false)
+        }
+
+
     }
 
-   
+
     const nav = (page) => {
         navigate(page)
     }
@@ -71,25 +88,24 @@ const QuizContextProvider = ({ children }) => {
             tally()
         }
         else {
-            alert(`You have answered ${answeredQuestions.size} out of ${quizData.length} questions.
-             Please answer all of the questions.`)
+            setSubmitError(true)
 
         }
     }
 
-    const startNewGame=()=>{
-        setStartGame(prev=>!prev)
+    const startNewGame = () => {
+        setStartGame(prev => !prev)
         setGameCompleted(false)
         setTallyTotal(0)
         setAnsweredQuestions(new Set([]))
 
-        
+
     }
 
     return (
         <QuizContext.Provider value={{
             nav, quizData, currentPage,
-            selectAnswerChoice, gameCompleted, tallyTotal,submit,startNewGame
+            selectAnswerChoice, gameCompleted, tallyTotal, submit, startNewGame, submitError, answeredQuestions
         }}>
             {children}
         </QuizContext.Provider>
