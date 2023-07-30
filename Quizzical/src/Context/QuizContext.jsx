@@ -8,6 +8,7 @@ const QuizContextProvider = ({ children }) => {
     const navigate = useNavigate() // function used switch starting page to quiz page
     const [startGame, setStartGame] = useState(() => false) // state used to initiate game
     const [quizData, setQuizData] = useState(() => []) // quiz data state
+    const [gameCompleted,setGameCompleted]=useState(()=>false)
     useEffect(() => {
         let info = []
         const answerSetter = (val, correct) => {
@@ -28,7 +29,7 @@ const QuizContextProvider = ({ children }) => {
                 quizInfo[quizInfoLength].answers.splice(placer, 0, answerSetter(i.correct_answer,true))
             }
             setQuizData(quizInfo)
-            console.log(quizInfo)    
+               
         }
         fetcher()
     }, [startGame])
