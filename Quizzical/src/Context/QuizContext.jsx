@@ -37,14 +37,17 @@ const QuizContextProvider = ({ children }) => {
 
     const currentPage = location.pathname
 
-    const answerSelector = (id, parentId) => {
+
+    const selectAnswerChoice = (id, parentId) => {
         const quizDataClone = structuredClone(quizData)
         const question = quizDataClone.find(item => item.id === parentId)
-        let answer = question.find(item => item.id === id)
-        return [question,answer]
-
+        const newAnswers = question.answers.map(item => item.id === id ? { ...item, selected: true } : { ...item ,selected:false})
+        question.answers = newAnswers
+      
+        setQuizData(quizDataClone)
     }
-    
+
+
 
     const nav = (page) => {
         navigate(page)
@@ -54,7 +57,8 @@ const QuizContextProvider = ({ children }) => {
 
 
     return (
-        <QuizContext.Provider value={{ nav, quizData, currentPage }}>
+        <QuizContext.Provider value={{ nav, quizData, currentPage,
+         selectAnswerChoice, gameCompleted }}>
             {children}
         </QuizContext.Provider>
     )

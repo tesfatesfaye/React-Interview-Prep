@@ -1,6 +1,8 @@
 import Answers from "./Answers"
 import { decode } from 'html-entities';
+import useQuestion from "../Hooks/useQuestion";
 const Questions=(props)=>{
+    const { style } = useQuestion()
 const answerMapper=((props.answers.map((data,index)=>{
     return(
         <Answers
@@ -8,6 +10,7 @@ const answerMapper=((props.answers.map((data,index)=>{
             {...data}
             index={index}
             parentId={props.id}
+            style={(() => style(data.selected, data.correct))}
         />
     )
 
