@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const QuizContext = createContext()
 
 const QuizContextProvider = ({ children }) => {
-    const navigate = useNavigate()
-    const [startGame, setStartGame] = useState(() => false)
-    const [quizData, setQuizData] = useState(() => [])
+    const navigate = useNavigate() // function used switch starting page to quiz page
+    const [startGame, setStartGame] = useState(() => false) // state used to initiate game
+    const [quizData, setQuizData] = useState(() => []) // quiz data state
     useEffect(() => {
         let info = []
         const answerSetter = (val, correct) => {
@@ -24,10 +24,10 @@ const QuizContextProvider = ({ children }) => {
                 for (let j of i.incorrect_answers){
                     quizInfo[quizInfoLength].answers.push(answerSetter(j,false))
                 }
-                let placer=Math.random()*3
+                let placer = Math.random() * i.incorrect_answers.length
                 quizInfo[quizInfoLength].answers.splice(placer, 0, answerSetter(i.correct_answer,true))
             }
-            console.log(quizInfo)
+            setQuizData(quizInfo)
         }
         fetcher()
     }, [startGame])

@@ -10,6 +10,7 @@ html, body, #root {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: #F5F7FB;
 }
 
 .App{
@@ -80,4 +81,10 @@ border-radius:40%;
 width: 400px;
 height: 400px;
 transform: rotate(-128.49deg);
+}
+
+.quiz-page{
+    display: flex;
+    flex-direction: column;
+
 }

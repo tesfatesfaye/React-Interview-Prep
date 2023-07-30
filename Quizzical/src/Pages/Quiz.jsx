@@ -1,8 +1,14 @@
-
+import { QuizContext } from "../Context/QuizContext";
+import { useContext } from "react";
 const Quiz=()=>{
 
+
+
+
     return(
-        <h1>Quiz</h1>
+        <div className="quiz-page">
+
+        </div>
     )
 }
 export default Quiz;
