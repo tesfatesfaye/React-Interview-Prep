@@ -18,27 +18,29 @@ const QuizContextProvider = ({ children }) => {
     }, [startGame])
     const currentPage = location.pathname
     const selectAnswerChoice = (id, parentId) => {
-        let alreadySelected = false // becomes true if one of the answer choices was already selected
-        const quizDataClone = structuredClone(quizData)
-        const question = quizDataClone.find(item => item.id === parentId)
-        const newAnswers = question.answers.map(item => {
-            if (item.id === id) {
-                if (item.selected) {
-                    alreadySelected = true
-                }
-                return { ...item, selected: true }
-            }
-            else {
-                return { ...item, selected: false }
-            }
-        })
-        question.answers = newAnswers
-        setQuizData(quizDataClone)
-        setAnsweredQuestions(prev => prev.add(parentId))
-        if (!alreadySelected) {
-            setSubmitError(false)
+        let alreadySelected = quizData.find(x=>x.id===parentId).answers.find(y=>y.id===id).selected
+         // becomes true if one of the answer choices was already selected
+        console.log(alreadySelected)
+         setQuizData((prev) => {
+           return prev.map((item) => {
+                return item.id !== parentId
+                    ? { ...item }
+                    : {
+                        ...item,
+                        answers: item.answers.map((answer) => {
+                            return answer.id !== id
+                                ? { ...answer, selected: false }
+                                : { ...answer, selected: true };
+                        }),
+                    };
+            });
+        });
+        setAnsweredQuestions((prev) => prev.add(parentId));
+        if (!alreadySelected && submitError) {
+            setSubmitError(false);
         }
-    }
+    };
+
     const nav = (page) => {
         navigate(page)
     }
