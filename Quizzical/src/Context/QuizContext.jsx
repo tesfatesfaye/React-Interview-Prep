@@ -2,6 +2,7 @@ import React, { createContext, useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import fetcher from '../../Util/fetcher';
 
+
 const QuizContext = createContext()
 
 const QuizContextProvider = ({ children }) => {
