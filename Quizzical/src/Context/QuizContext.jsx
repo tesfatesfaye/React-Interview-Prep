@@ -1,4 +1,4 @@
-import React, { createContext, useLayoutEffect, useState } from "react";
+import React, { createContext, useLayoutEffect, useState,useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import fetcher from '../../Util/fetcher';
 
@@ -14,16 +14,19 @@ const QuizContextProvider = ({ children }) => {
     const [tallyTotal, setTallyTotal] = useState(0)
     const [submitError, setSubmitError] = useState(false)
     const location = useLocation();
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetcher(setQuizData)
+
+        return () => {
+            console.log('new render')
+        }
     }, [startGame])
     const currentPage = location.pathname
     const selectAnswerChoice = (id, parentId) => {
-        let alreadySelected = quizData.find(x=>x.id===parentId).answers.find(y=>y.id===id).selected
-         // becomes true if one of the answer choices was already selected
-        console.log(alreadySelected)
-         setQuizData((prev) => {
-           return prev.map((item) => {
+        let alreadySelected = quizData.find(x => x.id === parentId).answers.find(y => y.id === id).selected
+            
+        setQuizData((prev) => {
+            return prev.map((item) => {
                 return item.id !== parentId
                     ? { ...item }
                     : {
