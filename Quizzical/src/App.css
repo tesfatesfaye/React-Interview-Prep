@@ -13,6 +13,7 @@ body,
   margin: 0;
   padding: 0;
   background-color: #f5f7fb;
+
 }
 
 .App {
@@ -55,8 +56,9 @@ body,
   border: 1px solid white;
   border-radius: 10px;
   color: #f5f7fb;
-  width: 7%;
-  padding: 0.75%;
+  width: 150px;
+  padding: 1em;
+  margin-bottom: 20px;
 }
 
 .blue-back {
@@ -113,7 +115,7 @@ body,
   display: flex;
   flex-direction: row;
   /* width: 100%; */
-  gap: 100px;
+  gap: 50px;
   justify-content: center;
   font-family: "inter", sans-serif;
   font-weight: 500;
@@ -140,6 +142,7 @@ body,
   padding-left: 1rem;
   padding-right: 1rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin-bottom: 0;
 }
 
 .button-parent {
@@ -149,10 +152,13 @@ body,
   align-items: center;
   width: 100%;
   gap: 2%;
+  z-index: 2;
 }
-
+.submit-button{
+  margin-bottom: 20px;
+}
 .score-text {
-  z-index: 90;
+  z-index: 2;
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 700;

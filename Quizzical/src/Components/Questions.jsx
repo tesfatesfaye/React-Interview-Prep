@@ -1,7 +1,7 @@
 import { decode } from 'html-entities';
 import Answers from "./Answers";
 const Questions = (props) => {
-       const answerMapper = ((props.answers.map((data, index) => {
+       const answerMapper =props.answers.map((data, index) => {
         return (
             <Answers
                 key={data.id}
@@ -12,7 +12,7 @@ const Questions = (props) => {
             />
         )
 
-    })))
+    })
 
     return (
         <>

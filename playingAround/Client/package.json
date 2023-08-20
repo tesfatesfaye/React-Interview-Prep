@@ -9,13 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "html-entities": "^2.4.0",
-    "id": "^0.0.0",
-    "nano": "^10.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.14.2",
-    "react-spinners": "^0.13.8",
+    "react-icons": "^4.10.1",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
